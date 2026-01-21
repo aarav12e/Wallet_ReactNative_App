@@ -1,15 +1,15 @@
-import { SignedIn, SignedOut, useUser } from "@clerk/clerk-expo";
-import { Link, useRouter } from "expo-router";
+import { useUser } from "@clerk/clerk-expo";
+import { useRouter } from "expo-router";
 import { Alert, FlatList, Image, RefreshControl, Text, TouchableOpacity, View } from "react-native";
-import { SignOutButton } from "@/components/SignOutButton.jsx";
-import { useTransactions } from "../../hooks/useTransactions.js";
+import { SignOutButton } from "@/components/SignOutButton";
+import { useTransactions } from "@/hooks/useTransactions";
 import { useEffect, useState } from "react";
-import PageLoader from "../../components/PageLoader.jsx";
-import { styles } from "../../assets/styles/home.styles.js";
+import PageLoader from "@/components/PageLoader";
+import { styles } from "@/assets/styles/home.styles";
 import { Ionicons } from "@expo/vector-icons";
-import { BalanceCard } from "../../components/BalanceCard.jsx";
-import { TransactionItem } from "../../components/TransactionItem.jsx";
-import NoTransactionsFound from "../../components/NoTransactionsFound.jsx";
+import { BalanceCard } from "@/components/BalanceCard";
+import { TransactionItem } from "@/components/TransactionItem";
+import NoTransactionsFound from "@/components/NoTransactionsFound";
 
 export default function Page() {
   const { user } = useUser();
@@ -17,7 +17,7 @@ export default function Page() {
   const [refreshing, setRefreshing] = useState(false);
 
   const { transactions, summary, isLoading, loadData, deleteTransaction } = useTransactions(
-    user?.id
+    user.id
   );
 
   const onRefresh = async () => {
@@ -47,9 +47,9 @@ export default function Page() {
           {/* LEFT */}
           <View style={styles.headerLeft}>
             <Image
-              source={require("../../assets/images/logo.png")}
+              source={require("@/assets/images/logo.png")}
               style={styles.headerLogo}
-              resizeMode="contain"
+              contentFit="contain"
             />
             <View style={styles.welcomeContainer}>
               <Text style={styles.welcomeText}>Welcome,</Text>

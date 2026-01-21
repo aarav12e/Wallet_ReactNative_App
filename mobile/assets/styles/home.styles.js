@@ -198,6 +198,16 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  transactionsHeaderContainer: {
+    paddingHorizontal: 0,
+  },
+  transactionsList: {
+    flex: 1,
+  },
+  transactionsListContent: {
+    paddingHorizontal: 20,
+    paddingBottom: 20,
     backgroundColor: COLORS.background,
   },
   emptyState: {

@@ -1,9 +1,9 @@
-// react custom hook file
-
 import { useCallback, useState } from "react";
 import { Alert } from "react-native";
-import { API_URL } from "../constants/api";
+import { API_URL } from "@/constants/api";
 
+// const API_URL = "https://wallet-api-cxqp.onrender.com/api";
+// const API_URL = "http://localhost:5001/api";
 
 export const useTransactions = (userId) => {
   const [transactions, setTransactions] = useState([]);
@@ -18,6 +18,10 @@ export const useTransactions = (userId) => {
   const fetchTransactions = useCallback(async () => {
     try {
       const response = await fetch(`${API_URL}/transactions/${userId}`);
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`API Error ${response.status}: ${errorText.substring(0, 100)}`);
+      }
       const data = await response.json();
       setTransactions(data);
     } catch (error) {
@@ -28,6 +32,10 @@ export const useTransactions = (userId) => {
   const fetchSummary = useCallback(async () => {
     try {
       const response = await fetch(`${API_URL}/transactions/summary/${userId}`);
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`API Error ${response.status}: ${errorText.substring(0, 100)}`);
+      }
       const data = await response.json();
       setSummary(data);
     } catch (error) {
@@ -52,7 +60,10 @@ export const useTransactions = (userId) => {
   const deleteTransaction = async (id) => {
     try {
       const response = await fetch(`${API_URL}/transactions/${id}`, { method: "DELETE" });
-      if (!response.ok) throw new Error("Failed to delete transaction");
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to delete transaction: ${response.status}`);
+      }
 
       // Refresh data after deletion
       loadData();

@@ -1,7 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Text, TouchableOpacity, View } from "react-native";
-import { styles } from "../assets/styles/home.styles";
-import { COLORS } from "../constants/colors";
+import { styles } from "@/assets/styles/home.styles";
+import { COLORS } from "@/constants/colors";
 import { useRouter } from "expo-router";
 
 const NoTransactionsFound = () => {

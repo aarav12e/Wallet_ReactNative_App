@@ -148,6 +148,12 @@ export const styles = StyleSheet.create({
     marginRight: 6,
   },
   categoryButtonText: {
+    fontSize: 14,
+    fontWeight: "500",
+    color: COLORS.text,
+  },
+  categoryButtonTextActive: {
+    color: COLORS.white,
     color: COLORS.text,
     fontSize: 14,
   },
